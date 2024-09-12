@@ -25,8 +25,13 @@ COPY . /app
 
 RUN poetry lock --no-update
 
+
+# Assuming you are using a Debian-based image
+RUN apt-get update && apt-get install -y libpq-dev
+
+
 # Install Python dependencies
-RUN poetry install --no-root
+RUN poetry install
 
 # Add wait-for-it.sh script to the container
 COPY wait-for-it.sh /wait-for-it.sh
